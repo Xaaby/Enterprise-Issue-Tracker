@@ -29,8 +29,14 @@ public class IssueController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Issue>> getAllIssues() {
-        List<Issue> issues = issueService.getAllIssues();
+    public ResponseEntity<List<Issue>> getAllIssues(
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String priority,
+            @RequestParam(required = false) String assignee,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        List<Issue> issues = issueService.getAllIssues(search, status, priority, assignee, page, size);
         return new ResponseEntity<>(issues, HttpStatus.OK);
     }
 

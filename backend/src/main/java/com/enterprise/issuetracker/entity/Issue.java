@@ -2,6 +2,7 @@ package com.enterprise.issuetracker.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,6 +12,9 @@ public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "issue_key", unique = true)
+    private String key;
 
     @Column(nullable = false)
     private String title;
@@ -22,8 +26,19 @@ public class Issue {
     @Column(nullable = false)
     private IssueStatus status = IssueStatus.OPEN;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Priority priority = Priority.P2;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Category category = Category.TASK;
+
     @Column(name = "assigned_to")
     private String assignedTo;
+
+    @Column(name = "due_date")
+    private LocalDate dueDate;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -46,7 +61,13 @@ public class Issue {
 
     @PrePersist
     protected void onCreate() {
-        createdAt = LocalDateTime.now();
+        if (key == null || key.isEmpty()) {
+            // Generate unique key: EIT-{timestamp}
+            key = "EIT-" + System.currentTimeMillis();
+        }
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now();
+        }
         updatedAt = LocalDateTime.now();
     }
 
@@ -110,5 +131,37 @@ public class Issue {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 }

@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ToastComponent } from './shared/toast/toast.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ToastComponent],
   template: `
-    <div class="container">
-      <h1>Enterprise Issue Tracker</h1>
-      <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
+    <app-toast></app-toast>
   `,
   styles: [`
-    h1 {
-      color: #333;
-      margin-bottom: 20px;
+    :host {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
   `]
 })
 export class AppComponent {
-  title = 'Issue Tracker';
 }
