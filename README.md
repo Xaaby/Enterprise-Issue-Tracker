@@ -11,7 +11,7 @@ An internal enterprise tool for tracking and managing issues/tickets. Provides a
 - Spring Boot 3.2.0
 - Spring Web (REST APIs)
 - Spring Data JPA
-- PostgreSQL
+- SQLite (database file created automatically)
 
 **Frontend:**
 - Angular 17
@@ -24,18 +24,12 @@ An internal enterprise tool for tracking and managing issues/tickets. Provides a
 - Java 17+
 - Maven 3.6+
 - Node.js 18+ and npm
-- PostgreSQL 12+ (or MySQL)
 
 ### Backend Setup
 
-1. Create PostgreSQL database:
-```sql
-CREATE DATABASE issue_tracker;
-```
+1. No database setup required! SQLite database file (`issue_tracker.db`) will be created automatically.
 
-2. Update database credentials in `backend/src/main/resources/application.properties` if needed.
-
-3. Navigate to backend directory:
+2. Navigate to backend directory:
 ```bash
 cd backend
 ```

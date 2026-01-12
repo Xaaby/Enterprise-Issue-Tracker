@@ -1,11 +1,10 @@
--- Create database (run this manually in PostgreSQL)
--- CREATE DATABASE issue_tracker;
-
+-- SQLite Database Schema Reference
 -- The application will auto-create the table using JPA ddl-auto=update
--- But here's the schema for reference:
+-- Database file: issue_tracker.db (created automatically in backend directory)
 
+-- Schema reference (for SQLite):
 CREATE TABLE IF NOT EXISTS issues (
-    id BIGSERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     title VARCHAR(255) NOT NULL,
     description TEXT,
     status VARCHAR(20) NOT NULL,

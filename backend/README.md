@@ -5,18 +5,13 @@
 - Spring Boot 3.2.0
 - Spring Web
 - Spring Data JPA
-- PostgreSQL
+- SQLite (database file created automatically)
 
 ## Setup
 
-1. Ensure PostgreSQL is running and create database:
-```sql
-CREATE DATABASE issue_tracker;
-```
+1. No database setup required! SQLite database file (`issue_tracker.db`) will be created automatically in the backend directory when you first run the application.
 
-2. Update `src/main/resources/application.properties` with your database credentials.
-
-3. Build:
+2. Build:
 ```bash
 mvn clean install
 ```
